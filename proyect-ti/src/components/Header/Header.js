@@ -1,32 +1,11 @@
 import React from "react";
-import OpcionesMenu from "./OpcionesMenu";
+import Navegacion from '../Navegacion/Navegacion';
 
 function Header() {
-    console.log('a change')
-    let opciones = [
-        {
-            name:'Home',
-            path: '/'
-        },
-      
-        {
-            name:'Favoritos',
-            path: '/'
-        },
-        {
-            name:'Populares',
-            path: '/'
-        },
-        {
-            name:'En cartelera',
-            path: '/'
-        },
-
-    ]
     return (
         <header>
             <h1>2 WATCH</h1>
-            <OpcionesMenu config={opciones} />
+            <Navegacion />
         </header>
     )
 }

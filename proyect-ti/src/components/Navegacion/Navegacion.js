@@ -9,19 +9,22 @@ function Navegacion(){
             path:'/'
         },
         {
-            nombre: 'About us',
-            path:'/aboutus'
+            nombre: 'Favoritos',
+            path:'/Favoritos'
+        },
+        {
+            nombre: 'Peliculas Populares',
+            path:'/PeliculasPopulares'
+        },
+        {
+            nombre: 'Peliculas en Cartel',
+            path:'/PeliculasEnCartel'
         },
         
     ]
     return(
     <nav>
         <OpcionesMenu opciones={opciones} />
-        <ul className="user">
-            <li>Nombre usuario 
-                <img src="./img/user.jpg" alt="" />
-            </li>
-        </ul>
     </nav>
     )
 }
