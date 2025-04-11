@@ -7,7 +7,7 @@ import Home from "./screens/Home/Home";
 import PeliculasPopulares from "./screens/PeliculasPopulares/PeliculasPopulares";
 import PeliculasEnCartelera from "./screens/PeliculasEnCartelera/PeliculasEnCartelera";
 // import Detalle from "./screens/Detalle/Detalle";
-// import NotFound from "./screens/NotFound/NotFound";
+import NotFound from "./screens/NotFound/NotFound";
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
         <Route path={'/peliculasPopulares'} component={PeliculasPopulares} />
         <Route path={'/PeliculasEnCartelera'} component={PeliculasEnCartelera} />
         {/* <Route path={'/detalle/:id'} component={Detalle} /> */}
-        {/* <Route path={''} component={NotFound} /> */}
+        <Route path={''} component={NotFound} />
       </Switch>
     {/* JSX: extension de Js la cual produce elementos html */}
     <Footer />
