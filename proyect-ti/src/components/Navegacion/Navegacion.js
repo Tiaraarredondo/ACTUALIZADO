@@ -18,7 +18,7 @@ function Navegacion(){
         },
         {
             nombre: 'Peliculas en Cartel',
-            path:'/PeliculasEnCartel'
+            path:'/PeliculasEnCartelera'
         },
         
     ]
