@@ -4,7 +4,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import {Switch, Route } from 'react-router-dom'
 import Home from "./screens/Home/Home";
-import Peliculas from "./components/Peliculas/Peliculas";
+import PeliculasPopulares from "./screens/PeliculasPopulares/PeliculasPopulares";
 // import Detalle from "./screens/Detalle/Detalle";
 // import NotFound from "./screens/NotFound/NotFound";
 
@@ -14,7 +14,7 @@ function App() {
     <Header/>
         <Switch>
         <Route path={'/'} exact={true} component={Home} />
-        <Route path={'/peliculas'} component={Peliculas} />
+        <Route path={'/peliculasPopulares'} component={PeliculasPopulares} />
         {/* <Route path={'/detalle/:id'} component={Detalle} /> */}
         {/* <Route path={''} component={NotFound} /> */}
       </Switch>
