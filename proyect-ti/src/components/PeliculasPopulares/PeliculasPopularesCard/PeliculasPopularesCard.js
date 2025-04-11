@@ -3,6 +3,7 @@ import React from 'react';
 function PeliculasPopularesCard({ data }) {
     return (
         <div>
+           
             <h3>{data.title}</h3>
             <h4>Descripcion:</h4>
             <h4>{data.overview}</h4>

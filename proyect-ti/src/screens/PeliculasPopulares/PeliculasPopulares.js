@@ -27,7 +27,9 @@ class PeliculasPopulares extends Component {
 
     render() {
         return (
+          
             <>
+              <h1>Peliculas populares</h1>
                 {
                     this.state.peliculas.length === 0 ? (
                         <p>Cargando películas...</p>
