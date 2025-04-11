@@ -3,7 +3,7 @@ import Cartelera from "../../components/Cartelera/Cartelera";
 
 let apiKey = "9f66dc201448c71cc91c3c8c9f488105";
 
-class PeliculasEnCartelera extends Component {
+class Peliculas extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,7 +17,9 @@ class PeliculasEnCartelera extends Component {
   }
 
   traerPeliculas(page) {
-    const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&page=${page}`;
+    const { endpoint } = this.props; // por ejemplo: "top_rated" o "upcoming"
+    const url = `https://api.themoviedb.org/3/movie/${endpoint}?api_key=${apiKey}&page=${page}`;
+    
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -34,9 +36,11 @@ class PeliculasEnCartelera extends Component {
   };
 
   render() {
+    const { titulo } = this.props;
+
     return (
       <div>
-        <h1>Now Playing</h1>
+        <h1>{titulo}</h1>
 
         {this.state.peliculas.length === 0 ? (
           <p>Cargando...</p>
@@ -52,4 +56,4 @@ class PeliculasEnCartelera extends Component {
   }
 }
 
-export default PeliculasEnCartelera;
+export default Peliculas;
