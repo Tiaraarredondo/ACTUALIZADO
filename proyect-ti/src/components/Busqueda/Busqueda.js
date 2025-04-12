@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import './Busqueda.css';
 
 class Busqueda extends Component {
@@ -18,14 +17,21 @@ class Busqueda extends Component {
         fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
             .then(res => res.json())
             .then(data => {
-                const populares = data.results.slice(0, 5);
+                const populares = [];
+                for (let i = 0; i < 5; i++) {
+                    populares.push(data.results[i]);
+                }
 
                 // Luego trae las de cartelera
                 fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}`)
                     .then(res => res.json())
                     .then(data => {
-                        const cartelera = data.results.slice(0, 5);
-                        const todas = [...populares, ...cartelera];
+                        const cartelera = [];
+                        for (let i = 0; i < 5; i++) {
+                            cartelera.push(data.results[i]);
+                        }
+
+                        const todas = populares.concat(cartelera);
                         this.setState({ todas });
                     })
                     .catch(err => console.log(err));
@@ -48,6 +54,27 @@ class Busqueda extends Component {
             peli.title.toLowerCase().includes(busqueda.toLowerCase())
         );
 
+        let resultadosBusqueda;
+        if (busqueda) {
+            if (resultadosFiltrados.length === 0) {
+                resultadosBusqueda = <p>No hay resultados</p>;
+            } else {
+                resultadosBusqueda = (
+                    <ul>
+                        {resultadosFiltrados.map((peli, i) => (
+                            <li key={i}>
+                                <h4>{peli.title}</h4>
+                                <img
+                                    src={`https://image.tmdb.org/t/p/w200${peli.poster_path}`}
+                                    alt={peli.title}
+                                />
+                            </li>
+                        ))}
+                    </ul>
+                );
+            }
+        }
+
         return (
             <div>
                 <form onSubmit={this.evitarSubmit}>
@@ -60,24 +87,7 @@ class Busqueda extends Component {
                     <input type="submit" value="Buscar" />
                 </form>
 
-                {busqueda && (
-                    <div>
-                        <h3>Resultados de búsqueda:</h3>
-                        {resultadosFiltrados.length === 0 ? <p>No hay resultados</p> :
-                            <ul>
-                                {resultadosFiltrados.map((peli, i) => (
-                                    <li key={i}>
-                                        <h4>{peli.title}</h4>
-                                        <img
-                                            src={`https://image.tmdb.org/t/p/w200${peli.poster_path}`}
-                                            alt={peli.title}
-                                        />
-                                    </li>
-                                ))}
-                            </ul>
-                        }
-                    </div>
-                )}
+                {resultadosBusqueda}
             </div>
         );
     }
