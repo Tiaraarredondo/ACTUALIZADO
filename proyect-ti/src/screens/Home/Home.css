@@ -16,14 +16,16 @@ main {
   
   input[type="submit"] {
     padding: 8px 16px;
-    background-color: #1e90ff;
+    background-color: #d765b1;
     color: white;
     border: none;
     cursor: pointer;
   }
   
   h2 {
+    font-family: 'Special Gothic', sans-serif;
     margin-top: 40px;
+    text-decoration: underline; 
     text-align: center;
     color: #333;
   }
@@ -44,7 +46,7 @@ main {
   
   img {
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px rgba(164, 140, 140, 0.2);
     width: 100%;
     height: auto;
   }

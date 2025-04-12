@@ -1,13 +1,14 @@
 import React from "react";
 import Navegacion from '../Navegacion/Navegacion';
+import './styles.css';
 
 function Header() {
     return (
-        <header>
-            <h1>2 WATCH</h1>
+        <header className="header-container">
+            <h1 className="logo">2 WATCH</h1>
             <Navegacion />
         </header>
-    )
+    );
 }
 
-export default Header
+export default Header;
