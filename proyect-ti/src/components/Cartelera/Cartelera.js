@@ -43,7 +43,7 @@ export default class Cartelera extends Component {
     return (
       <div>
         <h1>{this.state.dataPelicula.title}</h1>
-        <img src={`https://image.tmdb.org/t/p/w500${this.state.dataPelicula.poster_path}`} alt={this.state.dataPelicula.title} />
+        <img src={`https://image.tmdb.org/t/p/w92${this.state.dataPelicula.poster_path}`} alt={this.state.dataPelicula.title} />
         {
           this.state.favorito ?
           <button onClick={()=> this.sacarDelFav(this.state.dataPelicula.id) }>Sacar del Fav</button>

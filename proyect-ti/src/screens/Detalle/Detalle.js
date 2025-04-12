@@ -6,3 +6,5 @@ export default function Detalle(props) {
     <div>Detalle de la peli {idPelicula}</div>
   )
 }
+
+TIARAAAAA
