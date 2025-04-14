@@ -5,7 +5,7 @@ class Busqueda extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            todas: [],
+            pelis: [],
             busqueda: ''
         };
     }
@@ -14,46 +14,15 @@ class Busqueda extends Component {
         const API_KEY = '9f66dc201448c71cc91c3c8c9f488105';
 
         // Trae las populares
-        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
+        fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}`)
             .then(res => res.json())
             .then(data => {
-                const populares = [];
+                const pelis = [];
                 for (let i = 0; i < 5; i++) {
-                    populares.push(data.results[i]);
+                    pelis.push(data.results[i]);
                 }
 
-                // Trae las de cartelera
-                fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}`)
-                    .then(res => res.json())
-                    .then(data => {
-                        const cartelera = [];
-                        for (let i = 0; i < 5; i++) {
-                            cartelera.push(data.results[i]);
-                        }
-
-                        // Evitar duplicados con un objeto de control
-                        const todas = [];
-                        const idsUsados = {};
-
-                        for (let i = 0; i < populares.length; i++) {
-                            const peli = populares[i];
-                            if (!idsUsados[peli.id]) {
-                                todas.push(peli);
-                                idsUsados[peli.id] = true;
-                            }
-                        }
-
-                        for (let i = 0; i < cartelera.length; i++) {
-                            const peli = cartelera[i];
-                            if (!idsUsados[peli.id]) {
-                                todas.push(peli);
-                                idsUsados[peli.id] = true;
-                            }
-                        }
-
-                        this.setState({ todas });
-                    })
-                    .catch(err => console.log(err));
+                
             })
             .catch(err => console.log(err));
     }
@@ -67,26 +36,11 @@ class Busqueda extends Component {
     }
 
     render() {
-        const { todas, busqueda } = this.state;
+        const { pelis, busqueda } = this.state;
 
-        // Filtro sin includes
-        const resultadosFiltrados = [];
-        for (let i = 0; i < todas.length; i++) {
-            const titulo = todas[i].title.toLowerCase();
-            const busq = busqueda.toLowerCase();
-
-            let coincide = true;
-            for (let x = 0; x < busq.length; x++) {
-                if (titulo[x] !== busq[x]) {
-                    coincide = false;
-                    break;
-                }
-            }
-
-            if (coincide) {
-                resultadosFiltrados.push(todas[i]);
-            }
-        }
+        const resultadosFiltrados = pelis.filter(peli =>
+            peli.title.toLowerCase().includes(busqueda.toLowerCase())
+        );
 
         let resultadosBusqueda;
         if (busqueda) {

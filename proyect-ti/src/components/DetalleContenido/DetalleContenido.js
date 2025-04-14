@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import './styles.css';
 let apiKey = "9f66dc201448c71cc91c3c8c9f488105";
 
 class DetalleContenido extends Component {

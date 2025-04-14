@@ -28,7 +28,7 @@ class CincoPP extends Component {
 
         return (
             <div>
-                <h2>Películas Populares</h2>
+                <h2>Popular Movies</h2>
                 {populares.length === 0 ? (
                     <p>Cargando...</p>
                 ) : (
@@ -36,12 +36,13 @@ class CincoPP extends Component {
                         {populares.map((peli, i) => (
                             <li key={i}>
                                 <Link to={`/DetalleContenido/${peli.id}`}>
-                                    <button>Ver Detalle</button>
+                                    
                                     <h3>{peli.title}</h3>
                                     <img
                                         src={`https://image.tmdb.org/t/p/w200${peli.poster_path}`}
                                         alt={peli.title}
                                     />
+                                   
                                 </Link>
                             </li>
                         ))}

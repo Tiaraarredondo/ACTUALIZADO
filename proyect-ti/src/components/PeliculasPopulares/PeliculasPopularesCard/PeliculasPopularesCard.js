@@ -75,6 +75,7 @@ class PeliculasPopularesCard extends Component {
             });
         }
     }
+    
 
     render() {
         const { dataPelicula, favorito } = this.state;
@@ -83,7 +84,7 @@ class PeliculasPopularesCard extends Component {
             <div className="card">
                 <h3>{this.props.data.title}</h3>
 
-                <button onClick={() => this.mostrarOcultarDescripcion()}>
+                <button  onClick={() => this.mostrarOcultarDescripcion()}>
                     {
                         this.state.mostrarDescripcion === true
                         ? 'Ocultar descripción' : 'Ver descripción'
@@ -94,7 +95,7 @@ class PeliculasPopularesCard extends Component {
                     this.state.mostrarDescripcion === true
                     ? (
                         <>
-                            <h4>Descripción:</h4>
+                            <h4>Description:</h4>
                             <p>{this.props.data.overview}</p>
                         </>
                     )
@@ -115,9 +116,9 @@ class PeliculasPopularesCard extends Component {
           <button>Ver Detalle</button>
         </Link>
                  {favorito ? (
-          <button onClick={() => this.sacarDelFav(dataPelicula.id)}>Sacar del Fav</button>
+          <button className= "Fav" onClick={() => this.sacarDelFav(dataPelicula.id)}>Sacar del Fav</button>
         ) : (
-          <button onClick={() => this.agregarAlFav(dataPelicula.id)}>Agregar al Fav</button>
+          <button className= "No Fav" onClick={() => this.agregarAlFav(dataPelicula.id)}>Fav</button>
         )}
             </div>
             

@@ -41,12 +41,13 @@ class CincoPC extends Component {
                       <li key={i}>
                         {/* Link al detalle */}
                         <Link to={`/DetalleContenido/${peli.id}`}>
-                        <button>Ver Detalle</button>
+                        
                           <h3>{peli.title}</h3>
                           <img
                             src={`https://image.tmdb.org/t/p/w200${peli.poster_path}`}
                             alt={peli.title}
                           />
+                          
                         </Link>
                       </li>
                     ))}

@@ -9,7 +9,7 @@ function Navegacion(){
             path:'/'
         },
         {
-            nombre: 'Favoritos',
+            nombre: 'Favorites',
             path:'/Favoritos'
         },
         {

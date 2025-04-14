@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PeliculasPopularesCard from "../../components/PeliculasPopulares/PeliculasPopularesCard/PeliculasPopularesCard";
 import Header from "../../components/Header/Header";
-import './styles.css';
+
 
 let apiKey = "9f66dc201448c71cc91c3c8c9f488105";
 
@@ -25,13 +25,15 @@ class PeliculasPopulares extends Component {
                 const nuevasPeliculas = data.results;
                 const peliculasActualizadas = this.state.peliculas.concat(nuevasPeliculas);
                 this.setState({
-                    peliculas: peliculasActualizadas,
-                    peliculasSinFiltro: peliculasActualizadas,
-                    paginaActual: this.state.paginaActual,
-                    backupPeliculas: peliculasActualizadas
-                });
-            })
-            .catch((err) => console.log("Error al cargar las películas populares:", err));
+                    peliculas: data.results,
+                    backupPeliculas: data.results
+                })
+            )
+            .catch((error) => console.error(error));
+
+
+   
+        this.traerPeliculas(this.state.paginaActual);
     }
 
     traerPeliculas(page) {
@@ -69,7 +71,7 @@ class PeliculasPopulares extends Component {
 
             <>
                 <Header></Header>
-                <h1>Peliculas populares</h1>
+                <h1>Popular Movie</h1>
                 {
                     this.state.peliculas.length === 0 ? (
                         <p>Cargando películas...</p>
