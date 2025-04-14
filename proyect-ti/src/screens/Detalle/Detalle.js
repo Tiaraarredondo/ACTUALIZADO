@@ -5,10 +5,13 @@ import DetalleContenido from './components/DetalleContenido/DetalleContenido';  
 
 function App() {
   return (
+    
     <Router>
+      
       <Switch>
+        
         <Route exact path="/" component={PeliculasEnCartelera} />
-        <Route path="/detalle/:tipo/:id" component={DetalleContenido} /> {/* Agregamos la ruta para el detalle */}
+        <Route path="/DetalleContenido/:id" component={DetalleContenido} /> {/* Agregamos la ruta para el detalle */}
       </Switch>
     </Router>
   );

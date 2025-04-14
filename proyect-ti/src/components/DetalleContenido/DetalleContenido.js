@@ -1,92 +1,87 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import './styles.css';
+let apiKey = "9f66dc201448c71cc91c3c8c9f488105";
 
-export default class DetalleContenido extends Component {
+class DetalleContenido extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      dataContenido: null,
+      pelicula: {},
       favorito: false
-    }
+    };
   }
 
   componentDidMount() {
-    const { id, tipo } = this.props.match.params; // `id` y `tipo` de la URL
-    this.obtenerDetalle(id, tipo)
-  }
+    const { id } = this.props.match.params; // Aquí obtenemos el id de la URL
 
-  obtenerDetalle(id, tipo) {
-    let url = '';
-    if (tipo === 'pelicula') {
-      url = `https://api.themoviedb.org/3/movie/${id}?api_key=9f66dc201448c71cc91c3c8c9f488105`; // URL de película
-    } else if (tipo === 'serie') {
-      url = `https://api.themoviedb.org/3/tv/${id}?api_key=9f66dc201448c71cc91c3c8c9f488105`; // URL de serie
-    }
-
-    fetch(url)
+    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
       .then(res => res.json())
       .then(data => {
-        this.setState({ dataContenido: data });
-        this.checkFavorito(id);
-      })
-      .catch(err => console.log("Error al obtener los detalles:", err));
-  }
+        this.setState({ pelicula: data });
 
-  checkFavorito(id) {
-    let favoritos = localStorage.getItem('Fav');
-    if (favoritos !== null) {
-      let favoritosParseados = JSON.parse(favoritos);
-      let estaEnFavoritos = favoritosParseados.includes(id);
-      if (estaEnFavoritos) {
-        this.setState({ favorito: true });
-      }
-    }
+        let favoritos = localStorage.getItem('Fav');
+        if (favoritos !== null) {
+          let arr = JSON.parse(favoritos);
+          if (arr.includes(data.id)) {
+            this.setState({ favorito: true });
+          }
+        }
+      })
+      .catch(err => console.log(err));
   }
 
   agregarAFavoritos(id) {
-    let favoritos = localStorage.getItem('Fav');
-    if (favoritos !== null) {
-      let favoritosParseados = JSON.parse(favoritos);
-      favoritosParseados.push(id);
-      localStorage.setItem('Fav', JSON.stringify(favoritosParseados));
+    let favs = localStorage.getItem('Fav');
+    if (favs !== null) {
+      let arr = JSON.parse(favs);
+      if (!arr.includes(id)) {
+        arr.push(id);
+        localStorage.setItem('Fav', JSON.stringify(arr));
+      }
     } else {
-      let nuevoFavorito = [id];
-      localStorage.setItem('Fav', JSON.stringify(nuevoFavorito));
+      let nuevoArr = [id];
+      localStorage.setItem('Fav', JSON.stringify(nuevoArr));
     }
     this.setState({ favorito: true });
   }
 
   sacarDeFavoritos(id) {
-    let favoritos = localStorage.getItem('Fav');
-    let favoritosParseados = JSON.parse(favoritos);
-    let nuevosFavoritos = favoritosParseados.filter(fav => fav !== id);
-    localStorage.setItem('Fav', JSON.stringify(nuevosFavoritos));
+    let favs = localStorage.getItem('Fav');
+    if (favs !== null) {
+      let arr = JSON.parse(favs);
+      let nuevoArr = arr.filter(elm => elm !== id);
+      localStorage.setItem('Fav', JSON.stringify(nuevoArr));
+    }
     this.setState({ favorito: false });
   }
 
   render() {
-    const { dataContenido, favorito } = this.state;
-    if (!dataContenido) {
-      return <p>Cargando...</p>
-    }
+    const { pelicula, favorito } = this.state;
 
     return (
-      <div className="detalle-contenido">
-        <h1>{dataContenido.title || dataContenido.name}</h1>
-        <img src={`https://image.tmdb.org/t/p/w500${dataContenido.poster_path}`} alt={dataContenido.title || dataContenido.name} />
-        <p><strong>Calificación:</strong> {dataContenido.vote_average}</p>
-        <p><strong>Fecha de estreno:</strong> {dataContenido.release_date || dataContenido.first_air_date}</p>
-        <p><strong>Duración:</strong> {dataContenido.runtime ? `${dataContenido.runtime} minutos` : 'Desconocido'}</p>
-        <p><strong>Género:</strong> {dataContenido.genres.map(genre => genre.name).join(', ')}</p>
-        <p><strong>Sinópsis:</strong> {dataContenido.overview}</p>
+      <div className="detalle">
+        <h2>{pelicula.title}</h2>
 
-        {
-          favorito ?
-          <button onClick={() => this.sacarDeFavoritos(dataContenido.id)}>Sacar de favoritos</button>
-          :
-          <button onClick={() => this.agregarAFavoritos(dataContenido.id)}>Agregar a favoritos</button>
-        }
+        {pelicula.poster_path ? (
+          <img
+            src={`https://image.tmdb.org/t/p/w300${pelicula.poster_path}`}
+            alt={pelicula.title}
+          />
+        ) : (
+          <p>Imagen no disponible</p>
+        )}
+
+        <p><strong>Sinopsis:</strong> {pelicula.overview}</p>
+        <p><strong>Duración:</strong> {pelicula.runtime} min</p>
+
+        {favorito ? (
+          <button onClick={() => this.sacarDeFavoritos(pelicula.id)}>Sacar de Favoritos</button>
+        ) : (
+          <button onClick={() => this.agregarAFavoritos(pelicula.id)}>Agregar a Favoritos</button>
+        )}
       </div>
     );
   }
 }
 
+export default DetalleContenido;

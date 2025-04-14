@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './styles.css';
+import { Link } from 'react-router-dom';
 
 let apiKey = "9f66dc201448c71cc91c3c8c9f488105";
 
@@ -111,6 +112,9 @@ class PeliculasPopularesCard extends Component {
                     )
                     : <p className="no-img">Sin imagen</p>
                 }
+                <Link to={`/DetalleContenido/${dataPelicula.id}`}>
+          <button>Ver Detalle</button>
+        </Link>
                  {favorito ? (
           <button className= "Fav" onClick={() => this.sacarDelFav(dataPelicula.id)}>Sacar del Fav</button>
         ) : (
