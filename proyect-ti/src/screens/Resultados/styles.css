@@ -1,0 +1,57 @@
+
+
+  
+  /* Título */
+  h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  }
+  
+  /* Mensajes */
+  p {
+    text-align: center;
+    font-size: 18px;
+    color: #777;
+    margin-top: 20px;
+    font-style: italic;
+  }
+  
+  /* Lista de resultados */
+  ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 0;
+  }
+  
+  /* Cada peli */
+  li {
+    width: 200px;
+    text-align: center;
+  }
+  
+  /* Título de cada peli */
+  li h4 {
+    font-size: 16px;
+    margin: 10px 0 5px;
+    color: #222;
+  }
+  
+  /* Imagen de la peli */
+  li img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+  }
+  
+  /* Hover efecto */
+  li img:hover {
+    transform: scale(1.05);
+  }
+  
