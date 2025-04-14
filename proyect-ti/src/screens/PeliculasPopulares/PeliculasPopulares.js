@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PeliculasPopularesCard from "../../components/PeliculasPopulares/PeliculasPopularesCard/PeliculasPopularesCard";
 import Header from "../../components/Header/Header";
-import './styles.css';
+
 
 let apiKey = "9f66dc201448c71cc91c3c8c9f488105";
 
@@ -30,8 +30,7 @@ class PeliculasPopulares extends Component {
             .catch((error) => console.error(error));
 
 
-    }
-    componentDidMount() {
+   
         this.traerPeliculas(this.state.paginaActual);
     }
 
@@ -70,7 +69,7 @@ class PeliculasPopulares extends Component {
 
             <>
                 <Header></Header>
-                <h1>Peliculas populares</h1>
+                <h1>Popular Movie</h1>
                 {
                     this.state.peliculas.length === 0 ? (
                         <p>Cargando películas...</p>

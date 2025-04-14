@@ -3,16 +3,16 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    background-color: #eac7c7;
-    color: white;
-    border-bottom: 2px solid #9e6666;
+    background-color: #797be7;
+    color: rgb(168, 195, 240);
+    border-bottom: 2px solid #6d34be;
 }
 
 header h1 {
     font-size: 2rem;
     font-weight: bold;
     letter-spacing: 2px;
-    color: #de5f65;
+    color: #403456;
     margin: 0;
 }
 

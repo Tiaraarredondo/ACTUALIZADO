@@ -24,7 +24,7 @@ export default class Favoritos extends Component {
     return (
       <div>
         <Header></Header>
-        <h1>Mis Favoritos</h1>
+        <h1>My favorites</h1>
 
         {/* Si no hay favoritos, mostramos un mensaje */}
         {this.state.favoritos.length === 0 ? (

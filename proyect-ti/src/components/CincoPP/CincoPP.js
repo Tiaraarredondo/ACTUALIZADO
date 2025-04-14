@@ -28,7 +28,7 @@ class CincoPP extends Component {
 
         return (
             <div>
-                <h2>Películas Populares</h2>
+                <h2>Popular Movies</h2>
                 {populares.length === 0 ? (
                     <p>Cargando...</p>
                 ) : (
