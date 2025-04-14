@@ -1,10 +1,17 @@
-import React from 'react'
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import PeliculasEnCartelera from './components/PeliculasEnCartelera/PeliculasEnCartelera';
+import DetalleContenido from './components/DetalleContenido/DetalleContenido';  // Importamos el componente de detalle
 
-export default function Detalle(props) {
-  const idPelicula = props.match.params.id
+function App() {
   return (
-    <div>Detalle de la peli {idPelicula}</div>
-  )
+    <Router>
+      <Switch>
+        <Route exact path="/" component={PeliculasEnCartelera} />
+        <Route path="/detalle/:tipo/:id" component={DetalleContenido} /> {/* Agregamos la ruta para el detalle */}
+      </Switch>
+    </Router>
+  );
 }
 
-TIARAAAAA
+export default App;

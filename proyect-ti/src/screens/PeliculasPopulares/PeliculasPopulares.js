@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PeliculasPopularesCard from "../../components/PeliculasPopulares/PeliculasPopularesCard/PeliculasPopularesCard";
+import Header from "../../components/Header/Header";
 import './styles.css';
 
 class PeliculasPopulares extends Component {
@@ -30,6 +31,7 @@ class PeliculasPopulares extends Component {
         return (
 
             <>
+                <Header></Header>
                 <h1>Peliculas populares</h1>
                 {
                     this.state.peliculas.length === 0 ? (

@@ -33,23 +33,26 @@ h1 {
     }
 }
 
-/* Estilo de los elementos de la cartelera */
 .Cartelera {
-    background-color: #ffffff;
+    width: 200px;
+    background-color: white;
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    text-align: center;
+    padding: 15px;
     transition: transform 0.3s ease;
-}
-
-.Cartelera:hover {
+  }
+  
+  .Cartelera:hover {
     transform: scale(1.05);
-}
-
-.Cartelera img {
+  }
+  
+  .Cartelera img {
     width: 100%;
-    border-bottom: 3px solid #5e35b1; /* Lila oscuro para el borde inferior */
-}
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+  }
 
 /* Estilo de los botones o acciones dentro de la cartelera */
 .Cartelera button {

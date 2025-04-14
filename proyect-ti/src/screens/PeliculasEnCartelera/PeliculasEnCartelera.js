@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Cartelera from "../../components/Cartelera/Cartelera";
 import FiltroPeliculasPopulares from "../../components/FiltroPeliculas/FiltroPeliculas";
+import Header from "../../components/Header/Header";
+import './styles.css'
 
 let apiKey = "9f66dc201448c71cc91c3c8c9f488105";
 
@@ -31,7 +33,7 @@ class PeliculasEnCartelera extends Component {
                     paginaActual: page,
                 });
             })
-            .catch((err) => console.log(err));
+            .catch((err) => console.log("Error al cargar las películas:", err));
     }
     cargarMas = () => {
         this.traerPeliculas(this.state.paginaActual + 1);
@@ -48,25 +50,29 @@ class PeliculasEnCartelera extends Component {
         }
     };
 
-render() {
-    return (
-        <div>
-            <h1>Now Playing</h1>
+    render() {
+        return (
+            <div>
+                <Header></Header>
+                <h1>Now Playing</h1>
 
-            <FiltroPeliculasPopulares filtro={this.filtrarPeliculas} />
+                <FiltroPeliculasPopulares filtro={this.filtrarPeliculas} />
 
-            {this.state.peliculas.length === 0 ? (
-                <p>Cargando...</p>
-            ) : (
-                this.state.peliculas.map((pelicula, idx) => (
-                    <Cartelera data={pelicula} key={idx} />
-                ))
-            )}
+                {this.state.peliculas.length === 0 ? (
+                    <p>Cargando...</p>
+                ) : (
+                    <div className="populares-grid">
+                        {this.state.peliculas.map((pelicula, idx) => (
+                            <Cartelera data={pelicula} key={idx} />
+                        ))}
+                    </div>
 
-            <button onClick={this.cargarMas}>Cargar más</button>
-        </div>
-    );
-}
+                )}
+
+                <button onClick={this.cargarMas}>Cargar más</button>
+            </div>
+        );
+    }
 }
 
 export default PeliculasEnCartelera;

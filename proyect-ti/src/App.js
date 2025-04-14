@@ -1,28 +1,26 @@
-//aqui es donde generamos la estructura de la app y tambiene es el componente principal
-import React from "react";
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
-import {Switch, Route } from 'react-router-dom'
-import Home from "./screens/Home/Home";
-import PeliculasPopulares from "./screens/PeliculasPopulares/PeliculasPopulares";
-import PeliculasEnCartelera from "./screens/PeliculasEnCartelera/PeliculasEnCartelera";
-// import Detalle from "./screens/Detalle/Detalle";
-import NotFound from "./screens/NotFound/NotFound";
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from './screens/Home/Home';
+import PeliculasPopulares from './screens/PeliculasPopulares/PeliculasPopulares';
+import PeliculasEnCartelera from './screens/PeliculasEnCartelera/PeliculasEnCartelera';
+import Favoritos from './screens/Favoritos/Favoritos';
+import NotFound from './screens/NotFound/NotFound';
+import DetalleContenido from './components/DetalleContenido/DetalleContenido';
 
 function App() {
   return (
-    <>
-    <Header/>
-        <Switch>
-        <Route path={'/'} exact={true} component={Home} />
-        <Route path={'/peliculasPopulares'} component={PeliculasPopulares} />
-        <Route path={'/PeliculasEnCartelera'} component={PeliculasEnCartelera} />
-        {/* <Route path={'/detalle/:id'} component={Detalle} /> */}
-        <Route path={''} component={NotFound} />
+    <Router>
+      <Switch>
+        <Route exact path='/' component={Home} />
+        <Route path='/PeliculasPopulares' component={PeliculasPopulares} />
+        <Route path='/PeliculasEnCartelera' component={PeliculasEnCartelera} />
+        <Route path='/Favoritos' component={Favoritos} />
+        <Route component={NotFound} />
+        <Route path="/detalle/:tipo/:id" component={DetalleContenido} />
       </Switch>
-    {/* JSX: extension de Js la cual produce elementos html */}
-    <Footer />
-    </>
+    </Router>
   );
 }
+
 export default App;
+
