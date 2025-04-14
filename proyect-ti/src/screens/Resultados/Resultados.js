@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
+
 import './styles.css';
 
 class Resultados extends Component {
@@ -27,6 +30,8 @@ class Resultados extends Component {
 
     return (
       <div>
+        
+          <Header></Header>
         <h2>Resultados de la búsqueda</h2>
         {cargando ? (
           <p>Cargando...</p>
@@ -45,6 +50,7 @@ class Resultados extends Component {
             ))}
           </ul>
         )}
+        <Footer></Footer>
       </div>
     );
   }
