@@ -17,26 +17,25 @@ class PeliculasPopulares extends Component {
 
     componentDidMount() {
         const API_KEY = "9f66dc201448c71cc91c3c8c9f488105";
-        const url = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`;
-
+        const url = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&page=${this.state.paginaActual}`;
+    
         fetch(url)
-            .then((response) => response.json())
-            .then((data) =>
+            .then((res) => res.json())
+            .then((data) => {
+                const nuevasPeliculas = data.results;
+                const peliculasActualizadas = this.state.peliculas.concat(nuevasPeliculas);
                 this.setState({
-                    peliculas: data.results,
-                    backupPeliculas: data.results
-                })
-            )
-            .catch((error) => console.error(error));
-
-
-    }
-    componentDidMount() {
-        this.traerPeliculas(this.state.paginaActual);
+                    peliculas: peliculasActualizadas,
+                    peliculasSinFiltro: peliculasActualizadas,
+                    paginaActual: this.state.paginaActual,
+                    backupPeliculas: peliculasActualizadas
+                });
+            })
+            .catch((err) => console.log("Error al cargar las películas populares:", err));
     }
 
     traerPeliculas(page) {
-        const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&page=${page}`;
+        const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=${page}`;
         fetch(url)
             .then((res) => res.json())
             .then((data) => {
