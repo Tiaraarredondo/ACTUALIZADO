@@ -22,7 +22,7 @@ class Busqueda extends Component {
                     populares.push(data.results[i]);
                 }
 
-                // Luego trae las de cartelera
+                // Trae las de cartelera
                 fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}`)
                     .then(res => res.json())
                     .then(data => {
@@ -31,7 +31,26 @@ class Busqueda extends Component {
                             cartelera.push(data.results[i]);
                         }
 
-                        const todas = populares.concat(cartelera);
+                        // Evitar duplicados con un objeto de control
+                        const todas = [];
+                        const idsUsados = {};
+
+                        for (let i = 0; i < populares.length; i++) {
+                            const peli = populares[i];
+                            if (!idsUsados[peli.id]) {
+                                todas.push(peli);
+                                idsUsados[peli.id] = true;
+                            }
+                        }
+
+                        for (let i = 0; i < cartelera.length; i++) {
+                            const peli = cartelera[i];
+                            if (!idsUsados[peli.id]) {
+                                todas.push(peli);
+                                idsUsados[peli.id] = true;
+                            }
+                        }
+
                         this.setState({ todas });
                     })
                     .catch(err => console.log(err));
@@ -50,9 +69,24 @@ class Busqueda extends Component {
     render() {
         const { todas, busqueda } = this.state;
 
-        const resultadosFiltrados = todas.filter(peli =>
-            peli.title.toLowerCase().includes(busqueda.toLowerCase())
-        );
+        // Filtro sin includes
+        const resultadosFiltrados = [];
+        for (let i = 0; i < todas.length; i++) {
+            const titulo = todas[i].title.toLowerCase();
+            const busq = busqueda.toLowerCase();
+
+            let coincide = true;
+            for (let x = 0; x < busq.length; x++) {
+                if (titulo[x] !== busq[x]) {
+                    coincide = false;
+                    break;
+                }
+            }
+
+            if (coincide) {
+                resultadosFiltrados.push(todas[i]);
+            }
+        }
 
         let resultadosBusqueda;
         if (busqueda) {

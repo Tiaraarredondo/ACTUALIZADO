@@ -1,14 +1,68 @@
 import React, { Component } from 'react';
 import './styles.css';
 
+let apiKey = "9f66dc201448c71cc91c3c8c9f488105";
+
 class PeliculasPopularesCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            dataPelicula: {},
+            favorito: false,
             mostrarDescripcion: false
         };
     }
 
+    componentDidMount() {
+        const id = this.props.data.id;
+    
+        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
+          .then((res) => res.json())
+          .then((data) => {
+            this.setState({ dataPelicula: data });
+    
+            const storage = localStorage.getItem('Fav');
+            if (storage !== null) {
+              const arrParseado = JSON.parse(storage);
+              if (arrParseado.includes(data.id)) {
+                this.setState({ favorito: true });
+              }
+            }
+          })
+          .catch((err) => console.log(err));
+      }
+    
+      agregarAlFav(id) {
+        let storage = localStorage.getItem('Fav');
+        if (storage !== null) {
+          let arrParseado = JSON.parse(storage);
+          if (!arrParseado.includes(id)) {
+            arrParseado.push(id);
+            let arrStringificado = JSON.stringify(arrParseado);
+            localStorage.setItem('Fav', arrStringificado);
+          }
+        } else {
+          let primerID = [id];
+          let arrStringificado = JSON.stringify(primerID);
+          localStorage.setItem('Fav', arrStringificado);
+        }
+    
+        this.setState({
+          favorito: true,
+        });
+      }
+    
+      sacarDelFav(id) {
+        const storage = localStorage.getItem('Fav');
+        const storageParseado = JSON.parse(storage);
+        const filtrarStorage = storageParseado.filter((elm) => elm !== id);
+        const storageStringificado = JSON.stringify(filtrarStorage);
+        localStorage.setItem('Fav', storageStringificado);
+    
+        this.setState({
+          favorito: false,
+        });
+      }
     mostrarOcultarDescripcion() {
         if (this.state.mostrarDescripcion === true) {
             this.setState({
@@ -22,6 +76,8 @@ class PeliculasPopularesCard extends Component {
     }
 
     render() {
+        const { dataPelicula, favorito } = this.state;
+
         return (
             <div className="card">
                 <h3>{this.props.data.title}</h3>
@@ -54,7 +110,13 @@ class PeliculasPopularesCard extends Component {
                     )
                     : <p className="no-img">Sin imagen</p>
                 }
+                 {favorito ? (
+          <button onClick={() => this.sacarDelFav(dataPelicula.id)}>Sacar del Fav</button>
+        ) : (
+          <button onClick={() => this.agregarAlFav(dataPelicula.id)}>Agregar al Fav</button>
+        )}
             </div>
+            
         );
     }
 }

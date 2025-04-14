@@ -54,7 +54,7 @@ class PeliculasEnCartelera extends Component {
         return (
             <div>
                 <Header></Header>
-                <h1>Now Playing</h1>
+                <h1>Cartelera</h1>
 
                 <FiltroPeliculasPopulares filtro={this.filtrarPeliculas} />
 
