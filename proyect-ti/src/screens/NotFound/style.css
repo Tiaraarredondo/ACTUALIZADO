@@ -1,0 +1,56 @@
+main {
+    background: linear-gradient(135deg, #e3e4ea, #121f6e); /* Fondo lila suave */
+    padding: 40px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+.notfound-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    min-height: 80vh;
+    text-align: center;
+   
+  }
+  
+  .notfound-message {
+    margin-bottom: 30px;
+  }
+  
+  .notfound-message h1 {
+    font-size: 64px;
+    color: #ff4d4d;
+    margin-bottom: 10px;
+  }
+  
+  .notfound-message p {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .back-home-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .back-home-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .notfound-img {
+    max-width: 300px; /* ajustá este valor según lo que te parezca */
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }

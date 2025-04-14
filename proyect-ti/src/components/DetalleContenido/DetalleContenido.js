@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './styles.css';
 let apiKey = "9f66dc201448c71cc91c3c8c9f488105";
 
+
 class DetalleContenido extends Component {
   constructor(props) {
     super(props);
@@ -59,7 +60,9 @@ class DetalleContenido extends Component {
     const { pelicula, favorito } = this.state;
 
     return (
+      
       <div className="detalle">
+        
         <h2>{pelicula.title}</h2>
 
         {pelicula.poster_path ? (
@@ -73,6 +76,8 @@ class DetalleContenido extends Component {
 
         <p><strong>Sinopsis:</strong> {pelicula.overview}</p>
         <p><strong>Duración:</strong> {pelicula.runtime} min</p>
+        
+        <p><strong>Genre:</strong> {pelicula.genre_ids}</p>
 
         {favorito ? (
           <button onClick={() => this.sacarDeFavoritos(pelicula.id)}>Sacar de Favoritos</button>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Busqueda.css'; // asegurate de que apunte al CSS correcto
 
 export default class Buscador extends Component {
   constructor(props) {
@@ -21,11 +22,12 @@ export default class Buscador extends Component {
     return (
       <form onSubmit={(evento) => this.controlarForm(evento)}>
         <input
+          type="text"
           placeholder="Buscar película"
           value={this.state.input}
           onChange={(evento) => this.controlarInput(evento)}
         />
-        <button type="submit">Buscar</button>
+        <input type="submit" value="Buscar" />
       </form>
     );
   }
