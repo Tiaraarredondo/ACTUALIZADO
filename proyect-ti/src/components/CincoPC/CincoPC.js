@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class CincoPC extends Component {
     constructor(props) {
@@ -22,6 +23,9 @@ class CincoPC extends Component {
             })
             .catch(err => console.log(err));
     }
+    goToDetalle = (id) => {
+        this.props.history.push(`/DetalleContenido/${id}`);
+    };
 
     render() {
         const { cartelera } = this.state;
@@ -33,16 +37,20 @@ class CincoPC extends Component {
                     <p>Cargando...</p>
                 ) : (
                     <ul>
-                        {cartelera.map((peli, i) => (
-                            <li key={i}>
-                                <h3>{peli.title}</h3>
-                                <img
-                                    src={`https://image.tmdb.org/t/p/w200${peli.poster_path}`}
-                                    alt={peli.title}
-                                />
-                            </li>
-                        ))}
-                    </ul>
+                    {cartelera.map((peli, i) => (
+                      <li key={i}>
+                        {/* Link al detalle */}
+                        <Link to={`/DetalleContenido/${peli.id}`}>
+                        <button>Ver Detalle</button>
+                          <h3>{peli.title}</h3>
+                          <img
+                            src={`https://image.tmdb.org/t/p/w200${peli.poster_path}`}
+                            alt={peli.title}
+                          />
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
                 )}
             </div>
         );

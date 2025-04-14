@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 let apiKey = "9f66dc201448c71cc91c3c8c9f488105";
 
@@ -82,6 +83,9 @@ export default class Cartelera extends Component {
         ) : (
           <button onClick={() => this.agregarAlFav(dataPelicula.id)}>Agregar al Fav</button>
         )}
+        <Link to={`/DetalleContenido/${dataPelicula.id}`}>
+          <button>Ver Detalle</button>
+        </Link>
       </div>
     );
   }

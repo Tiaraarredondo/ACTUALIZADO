@@ -23,7 +23,7 @@ export default class Favoritos extends Component {
   render() {
     return (
       <div>
-        <Header></Header>
+        <Header/>
         <h1>Mis Favoritos</h1>
 
         {/* Si no hay favoritos, mostramos un mensaje */}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom';
 class CincoPP extends Component {
     constructor(props) {
         super(props);
@@ -35,15 +35,19 @@ class CincoPP extends Component {
                     <ul>
                         {populares.map((peli, i) => (
                             <li key={i}>
-                                <h3>{peli.title}</h3>
-                                <img
-                                    src={`https://image.tmdb.org/t/p/w200${peli.poster_path}`}
-                                    alt={peli.title}
-                                />
+                                <Link to={`/DetalleContenido/${peli.id}`}>
+                                    <button>Ver Detalle</button>
+                                    <h3>{peli.title}</h3>
+                                    <img
+                                        src={`https://image.tmdb.org/t/p/w200${peli.poster_path}`}
+                                        alt={peli.title}
+                                    />
+                                </Link>
                             </li>
                         ))}
                     </ul>
                 )}
+
             </div>
         );
     }

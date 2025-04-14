@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './styles.css';
+import { Link } from 'react-router-dom';
 
 class PeliculasPopularesCard extends Component {
     constructor(props) {
@@ -54,6 +55,9 @@ class PeliculasPopularesCard extends Component {
                     )
                     : <p className="no-img">Sin imagen</p>
                 }
+                <Link to={`/DetalleContenido/${dataPelicula.id}`}>
+          <button>Ver Detalle</button>
+        </Link>
             </div>
         );
     }
