@@ -116,9 +116,9 @@ class PeliculasPopularesCard extends Component {
           <button>Ver Detalle</button>
         </Link>
                  {favorito ? (
-          <button className= "Fav" onClick={() => this.sacarDelFav(dataPelicula.id)}>Sacar del Fav</button>
+          <button  onClick={() => this.sacarDelFav(dataPelicula.id)}>Sacar del Fav</button>
         ) : (
-          <button className= "No Fav" onClick={() => this.agregarAlFav(dataPelicula.id)}>Fav</button>
+          <button onClick={() => this.agregarAlFav(dataPelicula.id)}>Fav</button>
         )}
             </div>
             
