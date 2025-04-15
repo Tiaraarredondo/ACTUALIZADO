@@ -80,6 +80,7 @@ class DetalleContenido extends Component {
         <p><strong>Rating:</strong> {pelicula.vote_average} ⭐</p>
         <p><strong>Release Date:</strong> {pelicula.release_date}</p>
         
+        
 
         {favorito ? (
           <button onClick={() => this.sacarDeFavoritos(pelicula.id)}>Sacar de Favoritos</button>

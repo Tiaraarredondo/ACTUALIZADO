@@ -54,13 +54,23 @@ class PeliculasPopulares extends Component {
     cargarMas = () => {
         this.traerPeliculas(this.state.paginaActual + 1);
     };
+    filtrarPeliculas = (texto) => {
+        if (texto === "") {
+            this.setState({ peliculas: this.state.backupPeliculas });
+        } else {
+            let pelisFiltradas = this.state.backupPeliculas.filter((peli) =>
+                peli.title.toLowerCase().includes(texto.toLowerCase())
+            );
+            this.setState({ peliculas: pelisFiltradas });
+        }
+    };
 
     render() {
         return (
             <>
                 <Header></Header>
                 <h1>Popular Movie</h1>
-                <FiltroPeliculas filtro={(texto) => this.filtrarPeliculas(texto)} />
+                <FiltroPeliculas filtro={this.filtrarPeliculas} />
                 {
                     this.state.peliculas.length === 0 ? (
                         <p>Cargando películas...</p>
