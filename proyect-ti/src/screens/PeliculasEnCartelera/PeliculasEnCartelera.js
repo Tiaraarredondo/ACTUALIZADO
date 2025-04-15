@@ -68,8 +68,9 @@ class PeliculasEnCartelera extends Component {
   ))}
 </div>
                 )}
-
+                <div className="contenedor-cargar-mas" > 
                 <button onClick={this.cargarMas}>Cargar más</button>
+                </div>
                 <Footer></Footer>
             </div>
         );
