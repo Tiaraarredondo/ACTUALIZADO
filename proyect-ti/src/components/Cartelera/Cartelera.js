@@ -2,24 +2,35 @@ import React, { Component } from 'react';
 import './styles.css';
 import { Link } from 'react-router-dom';
 
+let apiKey = "9f66dc201448c71cc91c3c8c9f488105";
 
 export default class Cartelera extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      dataPelicula: {},
       favorito: false,
     };
   }
+  
 
   componentDidMount() {
-    const { data } = this.props;
-    const storage = localStorage.getItem('Fav');
-    if (storage !== null) {
-      const arrParseado = JSON.parse(storage);
-      if (arrParseado.includes(data.id)) {
-        this.setState({ favorito: true });
-      }
-    }
+    const id = this.props.data.id;
+
+    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({ dataPelicula: data });
+
+        const storage = localStorage.getItem('Fav');
+        if (storage !== null) {
+          const arrParseado = JSON.parse(storage);
+          if (arrParseado.includes(data.id)) {
+            this.setState({ favorito: true });
+          }
+        }
+      })
+      .catch((err) => console.log(err));
   }
 
   agregarAlFav(id) {
@@ -55,16 +66,15 @@ export default class Cartelera extends Component {
   }
 
   render() {
-    const { data } = this.props; // Recibiendo la película como prop
-    const { favorito } = this.state;
+    const { dataPelicula, favorito } = this.state;
 
     return (
       <div className="card">
         <h3>{dataPelicula.title}</h3>
         {dataPelicula.poster_path ? (
           <img
-            src={`https://image.tmdb.org/t/p/w300${data.poster_path}`}
-            alt={data.title}
+            src={`https://image.tmdb.org/t/p/w300${dataPelicula.poster_path}`}
+            alt={dataPelicula.title}
           />
         ) : (
           <p>Cargando imagen...</p>
@@ -74,7 +84,7 @@ export default class Cartelera extends Component {
         ) : (
           <button  onClick={() => this.agregarAlFav(dataPelicula.id)}>Fav</button>
         )}
-        <Link to={`/DetalleContenido/${data.id}`}>
+        <Link to={`/DetalleContenido/${dataPelicula.id}`}>
           <button>Ver Detalle</button>
         </Link>
       </div>
