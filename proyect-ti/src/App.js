@@ -6,6 +6,8 @@ import PeliculasEnCartelera from './screens/PeliculasEnCartelera/PeliculasEnCart
 import Favoritos from './screens/Favoritos/Favoritos';
 import DetalleContenido from './components/DetalleContenido/DetalleContenido';
 import NotFound from './screens/NotFound/NotFound';
+import Resultados from './screens/Resultados/Resultados';
+
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
         <Route path='/PeliculasEnCartelera' component={PeliculasEnCartelera} />
         <Route path='/Favoritos' component={Favoritos} />
         <Route path="/DetalleContenido/:id" component={DetalleContenido} />
+        <Route path="/resultados/:query" component={Resultados} />
         <Route component={NotFound} />
       </Switch>
     </Router>

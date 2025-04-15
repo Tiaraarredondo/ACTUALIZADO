@@ -80,9 +80,9 @@ export default class Cartelera extends Component {
           <p>Cargando imagen...</p>
         )}
         {favorito ? (
-          <button onClick={() => this.sacarDelFav(dataPelicula.id)}>Sacar del Fav</button>
+          <button className="Fav" onClick={() => this.sacarDelFav(dataPelicula.id)}>Sacar del Fav</button>
         ) : (
-          <button onClick={() => this.agregarAlFav(dataPelicula.id)}>Fav</button>
+          <button className= "No Fav"  onClick={() => this.agregarAlFav(dataPelicula.id)}>Fav</button>
         )}
         <Link to={`/DetalleContenido/${dataPelicula.id}`}>
           <button>Ver Detalle</button>

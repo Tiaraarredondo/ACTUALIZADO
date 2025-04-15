@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Cartelera from "../../components/Cartelera/Cartelera"; // El componente que muestra los detalles de cada película
 import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 
 export default class Favoritos extends Component {
   constructor(props) {
@@ -37,6 +38,7 @@ export default class Favoritos extends Component {
             ))}
           </div>
         )}
+        <Footer></Footer>
       </div>
     );
   }

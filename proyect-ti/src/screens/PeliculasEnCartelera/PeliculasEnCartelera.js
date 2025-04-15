@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Cartelera from "../../components/Cartelera/Cartelera";
 import FiltroPeliculasPopulares from "../../components/FiltroPeliculas/FiltroPeliculas";
 import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 
 
 let apiKey = "9f66dc201448c71cc91c3c8c9f488105";
@@ -70,6 +71,7 @@ class PeliculasEnCartelera extends Component {
                 )}
 
                 <button onClick={this.cargarMas}>Cargar más</button>
+                <Footer></Footer>
             </div>
         );
     }
