@@ -1,3 +1,8 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom right, #cbd5fc, #8e90f1);
+}
 main {
   padding: 20px;
   font-family: Arial, sans-serif;
@@ -53,7 +58,7 @@ img {
 
 /* Estilo general de la página */
 main {
-background: linear-gradient(135deg, #e3e4ea, #1f3cde); /* Fondo lila suave */
+  background: linear-gradient(135deg, #e3e4ea, #1f3cde);
 padding: 40px 20px;
 border-radius: 10px;
 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -64,10 +69,10 @@ h1 {
 text-align: center;
 margin: 40px 0 20px;
 font-size: 2.5rem;
-color: #5e35b1; /* Lila oscuro */
+color: #5e35b1; 
 font-family: 'Dancing Script';
 text-decoration: underline;
-text-decoration-color: #7e57c2; /* Lila más suave para el subrayado */
+text-decoration-color: #7e57c2; 
 }
 
 /* Estilo de las películas en cartelera (grid) */

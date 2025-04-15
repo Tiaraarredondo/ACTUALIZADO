@@ -28,6 +28,9 @@ class CincoPC extends Component {
     goToDetalle = (id) => {
         this.props.history.push(`/DetalleContenido/${id}`);
     };
+    goToCartelera = () => {
+        this.props.history.push(`/PeliculasEnCartelera`);
+    };
     mostrarOcultarDescripcion() {
         if (this.state.mostrarDescripcion === true) {
             this.setState({
@@ -76,7 +79,12 @@ class CincoPC extends Component {
 
         return (
             <div>
-                <h2>Películas en Cartelera</h2>
+                <Link to={`/PeliculasEnCartelera`}>
+
+                    <h2>Peliculas en cartelera</h2>
+    
+
+                </Link>
                 {cartelera.length === 0 ? (
                     <p>Cargando...</p>
                 ) : (

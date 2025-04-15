@@ -1,9 +1,4 @@
-main {
-    background: linear-gradient(135deg, #e3e4ea, #121f6e); /* Fondo lila suave */
-    padding: 40px 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
+
 .notfound-container {
     display: flex;
     flex-direction: column;
@@ -47,7 +42,7 @@ main {
   }
   
   .notfound-img {
-    max-width: 300px; /* ajustá este valor según lo que te parezca */
+    max-width: 300px; 
     width: 100%;
     height: auto;
     margin-top: 20px;

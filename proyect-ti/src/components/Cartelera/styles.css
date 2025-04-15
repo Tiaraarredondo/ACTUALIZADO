@@ -1,64 +1,62 @@
-body {
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(to bottom right, #cbd5fc, #8e90f1);
-  }
-  
-.Cartelera {
-  
+
+
+.card {
+   
   border-radius: 20px;
   padding: 20px;
   margin: 15px;
-
+ 
   background-size: cover;
   background-position: center;
   text-align: center;
   max-width: 300px;
-  
+ 
   font-family: 'Comic Neue', cursive;
-
-  }
-  .Cartelera:hover {
-    transform: scale(1.02);
-  }
   
-  .Cartelera h1 {
-    color: #5b1981;
-    font-size: 1.4rem;
-    margin-bottom: 10px;
-  }
-  
-  .Cartelera img {
-    width: 100%;
-    max-width: 300px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 10px rgba(255, 206, 0, 0.4);
-  }
-  
-button{
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: #e3cc72;
-    color: #1c1c1c;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    
-  }
-  
-.button:hover{
-    background-color: #edd575;
-  }
-  
-@media (max-width: 600px) {
-  .Cartelera {
-    background-image: linear-gradient(
-        rgba(0, 0, 0, 0.8),
-        rgba(0, 0, 0, 0.8)
-      ),
-      url('https://image.tmdb.org/t/p/original/mobile_background.jpg');
-    background-size: cover;
-  }
 }
+
+
+.card:hover {
+  transform: scale(1.03);
+  
+}
+
+.card img {
+  width: 100%;
+  border-radius: 12px;
+  margin-top: 10px;
+}
+
+.card h3 {
+  color: #1d042c;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.card h4 {
+  color: #decdf0;
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.card p {
+  color: #ebe6f8;
+  font-size: 0.9rem;
+}
+button{
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #e3cc72;
+  color: #1c1c1c;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  
+}
+
+button:hover{
+  background-color: #edd575;
+}
+
+

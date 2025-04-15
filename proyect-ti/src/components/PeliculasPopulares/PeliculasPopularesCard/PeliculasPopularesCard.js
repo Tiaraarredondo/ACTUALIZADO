@@ -10,7 +10,7 @@ class PeliculasPopularesCard extends Component {
         this.state = {
             dataPelicula: {},
             favorito: false,
-            mostrarDescripcion: false
+            
         };
     }
 
@@ -74,12 +74,7 @@ class PeliculasPopularesCard extends Component {
             <div className="card">
                 <h3>{this.props.data.title}</h3>
 
-                <button  onClick={() => this.mostrarOcultarDescripcion()}>
-                    {
-                        this.state.mostrarDescripcion === true
-                        ? 'Ocultar descripción' : 'Ver descripción'
-                    }
-                </button>
+               
 
                 {
                     this.state.mostrarDescripcion === true

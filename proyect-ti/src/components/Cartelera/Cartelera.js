@@ -69,7 +69,7 @@ export default class Cartelera extends Component {
     const { dataPelicula, favorito } = this.state;
 
     return (
-      <div className="Cartelera">
+      <div className="card">
         <h1>{dataPelicula.title}</h1>
         {dataPelicula.poster_path ? (
           <img

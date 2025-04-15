@@ -66,14 +66,21 @@ class CincoPP extends Component {
             favorito: false,
         });
     }
-
+    goToPopulares = () => {
+        this.props.history.push(`/PeliculasPopulares`);
+    };
 
     render() {
         const { populares, favorito, dataPelicula } = this.state;
 
         return (
             <div>
-                <h2>Popular Movies</h2>
+                     <Link to={`/PeliculasPopulares`}>
+                
+                                    <h2>Peliculas Populares</h2>
+                    
+                
+                                </Link>
                 {populares.length === 0 ? (
                     <p>Cargando...</p>
                 ) : (

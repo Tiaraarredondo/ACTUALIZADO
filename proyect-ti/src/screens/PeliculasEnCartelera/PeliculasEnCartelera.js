@@ -3,7 +3,7 @@ import Cartelera from "../../components/Cartelera/Cartelera";
 import FiltroPeliculasPopulares from "../../components/FiltroPeliculas/FiltroPeliculas";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-
+import './styles.css';
 
 let apiKey = "9f66dc201448c71cc91c3c8c9f488105";
 
@@ -54,27 +54,32 @@ class PeliculasEnCartelera extends Component {
     render() {
         return (
             <div>
-                <Header></Header>
+                <Header />
                 <h1>Cartelera</h1>
-
+    
                 <FiltroPeliculasPopulares filtro={this.filtrarPeliculas} />
-
+    
                 {this.state.peliculas.length === 0 ? (
                     <p>Cargando...</p>
                 ) : (
-                    <div className="populares-grid">
-                        {this.state.peliculas.map((pelicula, idx) => (
-                            <Cartelera data={pelicula} key={idx} />
-                        ))}
-                    </div>
-
+                    <>
+                        <div className="grid">
+                            {this.state.peliculas.map((pelicula, idx) => (
+                                <Cartelera data={pelicula} key={idx} />
+                            ))}
+                        </div>
+    
+                        <div className="contenedor-cargar-mas">
+                            <button onClick={this.cargarMas}>Cargar más</button>
+                        </div>
+                    </>
                 )}
-
-                <button onClick={this.cargarMas}>Cargar más</button>
-                <Footer></Footer>
+    
+                <Footer />
             </div>
         );
     }
+    
 }
 
 export default PeliculasEnCartelera;
