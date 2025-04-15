@@ -26,9 +26,9 @@ class PeliculasPopulares extends Component {
                 const peliculasActualizadas = this.state.peliculas.concat(nuevasPeliculas);
                 this.setState({
                     peliculas: data.results,
-                    backupPeliculas: data.results
-                })
-            )
+                    backupPeliculas: peliculasActualizadas
+                });
+            })
             .catch((error) => console.error(error));
 
 
