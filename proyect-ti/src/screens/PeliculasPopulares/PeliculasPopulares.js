@@ -17,31 +17,33 @@ class PeliculasPopulares extends Component {
     }
 
     componentDidMount() {
-        const API_KEY = "9f66dc201448c71cc91c3c8c9f488105";
-        const url = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`;
+        let API_KEY = "9f66dc201448c71cc91c3c8c9f488105";
+        let url = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`;
 
         fetch(url)
-            .then((response) => response.json())
-            .then((data) =>
-                this.setState({
-                    peliculas: data.results,
-                    backupPeliculas: peliculasActualizadas
-                });
-            })
-            .catch((error) => console.error(error));
-
+    .then((res) => res.json())
+    .then((data) => {
+        let nuevasPeliculas = data.results;
+        let peliculasActualizadas = this.state.peliculas.concat(nuevasPeliculas);
+        this.setState({
+            peliculas: peliculasActualizadas,
+            backupPeliculas: peliculasActualizadas
+        });
+    })
+    .catch((error) => console.error(error));
+        
 
    
         this.traerPeliculas(this.state.paginaActual);
     }
 
     traerPeliculas(page) {
-        const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&page=${page}`;
+        let url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&page=${page}`;
         fetch(url)
             .then((res) => res.json())
             .then((data) => {
-                const nuevasPeliculas = data.results;
-                const peliculasActualizadas = this.state.peliculas.concat(nuevasPeliculas);
+                let nuevasPeliculas = data.results;
+                let peliculasActualizadas = this.state.peliculas.concat(nuevasPeliculas);
                 this.setState({
                     peliculas: peliculasActualizadas,
                     peliculasSinFiltro: peliculasActualizadas,
@@ -58,7 +60,7 @@ class PeliculasPopulares extends Component {
         if (texto === "") {
             this.setState({ peliculas: this.state.peliculasSinFiltro });
         } else {
-            const pelisFiltradas = this.state.peliculasSinFiltro.filter((peli) =>
+            let pelisFiltradas = this.state.peliculasSinFiltro.filter((peli) =>
                 peli.title.toLowerCase().includes(texto.toLowerCase())
             );
             this.setState({ peliculas: pelisFiltradas });
