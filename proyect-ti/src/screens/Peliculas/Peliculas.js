@@ -17,7 +17,7 @@ class Peliculas extends Component {
   }
 
   traerPeliculas(page) {
-    const { endpoint } = this.props; // por ejemplo: "top_rated" o "upcoming"
+    const { endpoint } = this.props; 
     const url = `https://api.themoviedb.org/3/movie/${endpoint}?api_key=${apiKey}&page=${page}`;
     
     fetch(url)

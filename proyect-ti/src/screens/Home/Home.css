@@ -1,126 +1,96 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom right, #cbd5fc, #8e90f1);
+}
 main {
-    padding: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  form {
-    margin-bottom: 30px;
-    text-align: center;
-  }
-  
-  input[type="text"] {
-    padding: 8px;
-    width: 200px;
-    margin-right: 10px;
-  }
-  
-  input[type="submit"] {
-    padding: 8px 16px;
-    background-color: #140d20;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  h2 {
-    font-family: 'Special Gothic', sans-serif;
-    margin-top: 40px;
-    text-decoration: underline; 
-    text-align: center;
-    color: #040314;
-  }
-  
-  ul {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    list-style: none;
-    padding: 0;
-  }
-  
-  li {
-    margin: 15px;
-    text-align: center;
-    width: 200px;
-  }
-  
-  img {
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(164, 140, 140, 0.2);
-    width: 100%;
-    height: auto;
-  }
-  
-  /* Estilo general de la página */
-main {
-  background: linear-gradient(135deg, #e3e4ea, #2e4bf3); /* Fondo lila suave */
-  padding: 40px 20px;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+form {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+input[type="text"] {
+  padding: 8px;
+  width: 200px;
+  margin-right: 10px;
+}
+
+input[type="submit"] {
+  padding: 8px 16px;
+  background-color: #7a40df;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+h2 {
+  font-family: 'Special Gothic', sans-serif;
+  margin-top: 40px;
+  text-decoration: underline; 
+  text-align: center;
+  color: #040314;
+}
+
+ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 15px;
+  text-align: center;
+  width: 200px;
+}
+
+img {
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(164, 140, 140, 0.2);
+  width: 100%;
+  height: auto;
+}
+
+/* Estilo general de la página */
+main {
+  background: linear-gradient(135deg, #e3e4ea, #1f3cde);
+padding: 40px 20px;
+border-radius: 10px;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Título de la sección */
 h1 {
-  text-align: center;
-  margin: 40px 0 20px;
-  font-size: 2.5rem;
-  color: #5e35b1; /* Lila oscuro */
-  font-family: 'Dancing Script';
-  text-decoration: underline;
-  text-decoration-color: #7e57c2; /* Lila más suave para el subrayado */
+text-align: center;
+margin: 40px 0 20px;
+font-size: 2.5rem;
+color: #5e35b1; 
+font-family: 'Dancing Script';
+text-decoration: underline;
+text-decoration-color: #7e57c2; 
 }
 
 /* Estilo de las películas en cartelera (grid) */
 .populares-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-  padding: 20px;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 30px;
+padding: 20px;
 }
 
 @media (max-width: 768px) {
-  .populares-grid {
-      gap: 20px;
-      padding: 10px;
-  }
+.populares-grid {
+    gap: 20px;
+    padding: 10px;
+}
 }
 
-.Cartelera {
-  width: 200px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  padding: 15px;
-  transition: transform 0.3s ease;
-}
 
-.Cartelera:hover {
-  transform: scale(1.05);
-}
-
-.Cartelera img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  object-fit: cover;
-}
-
-/* Estilo de los botones o acciones dentro de la cartelera */
-.Cartelera button {
-  background-color: #7e57c2; /* Lila suave */
-  color: white;
-  font-size: 1rem;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.Cartelera button:hover {
-  background-color: #5e35b1; /* Lila oscuro en hover */
-}
 
 

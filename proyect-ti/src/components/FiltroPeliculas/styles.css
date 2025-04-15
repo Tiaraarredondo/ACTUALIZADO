@@ -1,0 +1,23 @@
+.filtro-form {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+  }
+  
+  .filtro-input {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: 2px solid #5e35b1;
+    border-radius: 8px;
+    width: 250px;
+    max-width: 90%;
+    transition: all 0.3s ease;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(94, 53, 177, 0.2);
+  }
+  
+  .filtro-input:focus {
+    border-color: #7a40df;
+    box-shadow: 0 0 8px rgba(122, 64, 223, 0.4);
+  }
+  

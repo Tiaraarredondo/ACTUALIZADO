@@ -12,6 +12,7 @@ function Home(props){
     return(
     <React.Fragment>
     <Header></Header>
+    
 
     <main>
     <Busqueda history={props.history} />

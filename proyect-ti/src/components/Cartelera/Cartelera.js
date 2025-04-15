@@ -59,9 +59,9 @@ export default class Cartelera extends Component {
     const { favorito } = this.state;
 
     return (
-      <div className="Cartelera">
-        <h1>{data.title}</h1>
-        {data.poster_path ? (
+      <div className="card">
+        <h3>{dataPelicula.title}</h3>
+        {dataPelicula.poster_path ? (
           <img
             src={`https://image.tmdb.org/t/p/w300${data.poster_path}`}
             alt={data.title}
@@ -70,13 +70,9 @@ export default class Cartelera extends Component {
           <p>Cargando imagen...</p>
         )}
         {favorito ? (
-          <button className="Fav" onClick={() => this.sacarDelFav(data.id)}>
-            Sacar del Fav
-          </button>
+          <button  onClick={() => this.sacarDelFav(dataPelicula.id)}>Sacar del Fav</button>
         ) : (
-          <button className="No Fav" onClick={() => this.agregarAlFav(data.id)}>
-            Fav
-          </button>
+          <button  onClick={() => this.agregarAlFav(dataPelicula.id)}>Fav</button>
         )}
         <Link to={`/DetalleContenido/${data.id}`}>
           <button>Ver Detalle</button>

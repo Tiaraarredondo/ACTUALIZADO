@@ -5,6 +5,7 @@ import Footer from "../../components/Footer/Footer";
 import FiltroPeliculas from "../../components/FiltroPeliculas/FiltroPeliculas";
 
 
+import './PeliculasPopulares.css'; 
 
 let apiKey = "9f66dc201448c71cc91c3c8c9f488105";
 
@@ -31,8 +32,6 @@ class PeliculasPopulares extends Component {
             )
             .catch((error) => console.error(error));
 
-
-   
         this.traerPeliculas(this.state.paginaActual);
     }
 
@@ -51,24 +50,13 @@ class PeliculasPopulares extends Component {
             })
             .catch((err) => console.log("Error al cargar las películas:", err));
     }
+
     cargarMas = () => {
         this.traerPeliculas(this.state.paginaActual + 1);
     };
 
-    filtrarPeliculas = (texto) => {
-        if (texto === "") {
-            this.setState({ peliculas: this.state.peliculasSinFiltro });
-        } else {
-            let pelisFiltradas = this.state.peliculasSinFiltro.filter((peli) =>
-                peli.title.toLowerCase().includes(texto.toLowerCase())
-            );
-            this.setState({ peliculas: pelisFiltradas });
-        }
-    };
-
     render() {
         return (
-
             <>
                 <Header></Header>
                 <h1>Popular Movie</h1>
@@ -77,16 +65,21 @@ class PeliculasPopulares extends Component {
                     this.state.peliculas.length === 0 ? (
                         <p>Cargando películas...</p>
                     ) : (
-                        <div className="populares-grid">
-                            {this.state.peliculas.map((elm, idx) => (
-                                <PeliculasPopularesCard data={elm} key={idx + elm.title} />
-                            ))}
-                        <button onClick={this.cargarMas}>Cargar más</button>
-                          <Footer></Footer>
-     
-                        </div>
+                        <>
+                            <div className="grid">
+                                {this.state.peliculas.map((elm, idx) => (
+                                    <PeliculasPopularesCard data={elm} key={idx + elm.title} />
+                                ))}
+                            </div>
+
+                            <div className="contenedor-cargar-mas">
+                                <button onClick={this.cargarMas}>Cargar más</button>
+                            </div>
+                        </>
                     )
                 }
+
+                <Footer />
             </>
         );
     }

@@ -10,7 +10,7 @@ class PeliculasPopularesCard extends Component {
         this.state = {
             dataPelicula: {},
             favorito: false,
-            
+            mostrarDescripcion: false
         };
     }
 
@@ -64,7 +64,17 @@ class PeliculasPopularesCard extends Component {
           favorito: false,
         });
       }
-
+    mostrarOcultarDescripcion() {
+        if (this.state.mostrarDescripcion === true) {
+            this.setState({
+                mostrarDescripcion: false
+            });
+        } else {
+            this.setState({
+                mostrarDescripcion: true
+            });
+        }
+    }
     
 
     render() {
@@ -74,7 +84,12 @@ class PeliculasPopularesCard extends Component {
             <div className="card">
                 <h3>{this.props.data.title}</h3>
 
-               
+                <button  onClick={() => this.mostrarOcultarDescripcion()}>
+                    {
+                        this.state.mostrarDescripcion === true
+                        ? 'Ocultar descripción' : 'Ver descripción'
+                    }
+                </button>
 
                 {
                     this.state.mostrarDescripcion === true

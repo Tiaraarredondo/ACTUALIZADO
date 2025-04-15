@@ -3,7 +3,7 @@ import Cartelera from "../../components/Cartelera/Cartelera";
 import FiltroPeliculas from "../../components/FiltroPeliculas/FiltroPeliculas";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-
+import './styles.css';
 
 let apiKey = "9f66dc201448c71cc91c3c8c9f488105";
 
@@ -54,8 +54,8 @@ class PeliculasEnCartelera extends Component {
     render() {
         return (
             <div>
-                <Header></Header>
-                <h1>Cartelera</h1>
+                <Header />
+                <h1>Peliculas Cartelera</h1>
 
                 <FiltroPeliculas filtro={this.filtrarPeliculas} />
 
@@ -74,6 +74,7 @@ class PeliculasEnCartelera extends Component {
             </div>
         );
     }
+    
 }
 
 export default PeliculasEnCartelera;
