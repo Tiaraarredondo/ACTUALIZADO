@@ -64,7 +64,17 @@ class PeliculasPopularesCard extends Component {
           favorito: false,
         });
       }
-
+    mostrarOcultarDescripcion() {
+        if (this.state.mostrarDescripcion === true) {
+            this.setState({
+                mostrarDescripcion: false
+            });
+        } else {
+            this.setState({
+                mostrarDescripcion: true
+            });
+        }
+    }
     
 
     render() {
