@@ -25,9 +25,9 @@ class PeliculasPopulares extends Component {
             .then((data) =>
                 this.setState({
                     peliculas: data.results,
-                    backupPeliculas: peliculasActualizadas
-                });
-            })
+                    backupPeliculas: data.results
+                })
+            )
             .catch((error) => console.error(error));
 
 
