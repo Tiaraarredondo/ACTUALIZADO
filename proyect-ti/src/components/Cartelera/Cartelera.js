@@ -70,7 +70,7 @@ export default class Cartelera extends Component {
 
     return (
       <div className="card">
-        <h1>{dataPelicula.title}</h1>
+        <h3>{dataPelicula.title}</h3>
         {dataPelicula.poster_path ? (
           <img
             src={`https://image.tmdb.org/t/p/w300${dataPelicula.poster_path}`}

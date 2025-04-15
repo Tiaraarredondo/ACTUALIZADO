@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Cartelera from "../../components/Cartelera/Cartelera";
-import FiltroPeliculasPopulares from "../../components/FiltroPeliculas/FiltroPeliculas";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import './styles.css';
@@ -55,26 +54,26 @@ class PeliculasEnCartelera extends Component {
         return (
             <div>
                 <Header />
-                <h1>Cartelera</h1>
-    
-                <FiltroPeliculasPopulares filtro={this.filtrarPeliculas} />
-    
-                {this.state.peliculas.length === 0 ? (
-                    <p>Cargando...</p>
-                ) : (
-                    <>
-                        <div className="grid">
-                            {this.state.peliculas.map((pelicula, idx) => (
-                                <Cartelera data={pelicula} key={idx} />
-                            ))}
-                        </div>
-    
-                        <div className="contenedor-cargar-mas">
-                            <button onClick={this.cargarMas}>Cargar más</button>
-                        </div>
-                    </>
-                )}
-    
+                <h1>Peliculas Cartelera</h1>
+
+                {
+                    this.state.peliculas.length === 0 ? (
+                        <p>Cargando películas...</p>
+                    ) : (
+                        <>
+                            <div className="grid">
+                                {this.state.peliculas.map((elm, idx) => (
+                                    <Cartelera data={elm} key={idx + elm.title} />
+                                ))}
+                            </div>
+
+                            <div className="contenedor-cargar-mas">
+                                <button onClick={this.cargarMas}>Cargar más</button>
+                            </div>
+                        </>
+                    )
+                }
+
                 <Footer />
             </div>
         );
