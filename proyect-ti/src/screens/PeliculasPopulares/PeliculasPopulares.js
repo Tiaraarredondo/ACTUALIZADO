@@ -21,17 +21,15 @@ class PeliculasPopulares extends Component {
         let url = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`;
 
         fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-        let nuevasPeliculas = data.results;
-        let peliculasActualizadas = this.state.peliculas.concat(nuevasPeliculas);
-        this.setState({
-            peliculas: peliculasActualizadas,
-            backupPeliculas: peliculasActualizadas
-        });
-    })
-    .catch((error) => console.error(error));
-        
+            .then((response) => response.json())
+            .then((data) =>
+                this.setState({
+                    peliculas: data.results,
+                    backupPeliculas: data.results
+                })
+            )
+            .catch((error) => console.error(error));
+
 
    
         this.traerPeliculas(this.state.paginaActual);
