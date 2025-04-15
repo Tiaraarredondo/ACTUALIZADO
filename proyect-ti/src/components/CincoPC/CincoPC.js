@@ -6,155 +6,107 @@ class CincoPC extends Component {
         super(props);
         this.state = {
             cartelera: [],
-            favorito: false,
-            mostrarDescripcion: false
+            favoritos: [],
+            mostrarDescripcion: null
         };
     }
 
     componentDidMount() {
-        const API_KEY = '9f66dc201448c71cc91c3c8c9f488105';
+        const favoritos = localStorage.getItem('Fav');
+        if (favoritos) {
+            this.setState({ favoritos: JSON.parse(favoritos) });
+        }
 
+        const API_KEY = '9f66dc201448c71cc91c3c8c9f488105';
         fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}`)
             .then(res => res.json())
             .then(data => {
-                let cincoCartelera = [];
-                for (let i = 0; i < 5; i++) {
-                    cincoCartelera.push(data.results[i]);
-                }
+                const cincoCartelera = data.results.slice(0, 5);
                 this.setState({ cartelera: cincoCartelera });
             })
             .catch(err => console.log(err));
     }
-    goToDetalle = (id) => {
-        this.props.history.push(`/DetalleContenido/${id}`);
-    };
-    goToCartelera = () => {
-        this.props.history.push(`/PeliculasEnCartelera`);
-    };
-    mostrarOcultarDescripcion() {
-        if (this.state.mostrarDescripcion === true) {
-            this.setState({
-                mostrarDescripcion: false
-            });
-        } else {
-            this.setState({
-                mostrarDescripcion: true
-            });
-        }
+
+    mostrarOcultarDescripcion(id) {
+        this.setState(prevState => ({
+            mostrarDescripcion: prevState.mostrarDescripcion === id ? null : id
+        }));
     }
+
     agregarAlFav(id) {
         let storage = localStorage.getItem('Fav');
-        if (storage !== null) {
-            let arrParseado = JSON.parse(storage);
-            if (!arrParseado.includes(id)) {
-                arrParseado.push(id);
-                let arrStringificado = JSON.stringify(arrParseado);
-                localStorage.setItem('Fav', arrStringificado);
-            }
-        } else {
-            let primerID = [id];
-            let arrStringificado = JSON.stringify(primerID);
-            localStorage.setItem('Fav', arrStringificado);
+        let arr = storage ? JSON.parse(storage) : [];
+
+        if (!arr.includes(id)) {
+            arr.push(id);
+            localStorage.setItem('Fav', JSON.stringify(arr));
         }
 
-        this.setState({
-            favorito: true,
-        });
+        this.setState({ favoritos: arr });
     }
 
     sacarDelFav(id) {
-        const storage = localStorage.getItem('Fav');
-        const storageParseado = JSON.parse(storage);
-        const filtrarStorage = storageParseado.filter((elm) => elm !== id);
-        const storageStringificado = JSON.stringify(filtrarStorage);
-        localStorage.setItem('Fav', storageStringificado);
+        let storage = localStorage.getItem('Fav');
+        let arr = storage ? JSON.parse(storage) : [];
 
-        this.setState({
-            favorito: false,
-        });
+        let nuevoArr = arr.filter(elm => elm !== id);
+        localStorage.setItem('Fav', JSON.stringify(nuevoArr));
+
+        this.setState({ favoritos: nuevoArr });
     }
 
     render() {
-        const { cartelera, favorito, dataPelicula } = this.state;
+        const { cartelera, favoritos, mostrarDescripcion } = this.state;
 
         return (
             <div>
                 <Link to={`/PeliculasEnCartelera`}>
-
-                    <h2>Peliculas en cartelera</h2>
-    
-
+                    <h2>Películas en cartelera</h2>
                 </Link>
+
                 {cartelera.length === 0 ? (
                     <p>Cargando...</p>
                 ) : (
-
                     <ul>
                         {cartelera.map((peli, i) => (
                             <li key={i}>
-                                {/* Link al detalle */}
                                 <Link to={`/DetalleContenido/${peli.id}`}>
-
                                     <h3>{peli.title}</h3>
                                     <img
                                         src={`https://image.tmdb.org/t/p/w200${peli.poster_path}`}
                                         alt={peli.title}
                                     />
-
                                 </Link>
-                                <button onClick={() => this.mostrarOcultarDescripcion()}>
-                                    {
-                                        this.state.mostrarDescripcion === true
-                                            ? 'Ocultar descripción' : 'Ver descripción'
-                                    }
+
+                                <button onClick={() => this.mostrarOcultarDescripcion(peli.id)}>
+                                    {mostrarDescripcion === peli.id
+                                        ? 'Ocultar descripción'
+                                        : 'Ver descripción'}
                                 </button>
 
-                                {
-                                    this.state.mostrarDescripcion === true
-                                        ? (
-                                            <>
-                                                <h4>Description:</h4>
-                                                <p>{this.props.data.overview}</p>
-                                            </>
-                                        )
-                                        : null
-                                }
+                                {mostrarDescripcion === peli.id && (
+                                    <>
+                                        <h4>Descripción:</h4>
+                                        <p>{peli.overview}</p>
+                                    </>
+                                )}
 
-                                {favorito ? (
-                                    <button onClick={() => this.sacarDelFav(dataPelicula.id)}>Sacar del Fav</button>
+                                {favoritos.includes(peli.id) ? (
+                                    <button onClick={() => this.sacarDelFav(peli.id)}>
+                                        Sacar del Fav
+                                    </button>
                                 ) : (
-                                    <button onClick={() => this.agregarAlFav(dataPelicula.id)}>Fav</button>
+                                    <button onClick={() => this.agregarAlFav(peli.id)}>
+                                        Fav
+                                    </button>
                                 )}
                             </li>
                         ))}
                     </ul>
-
                 )}
-
             </div>
         );
     }
 }
 
 export default CincoPC;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

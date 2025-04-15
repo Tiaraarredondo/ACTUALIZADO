@@ -1,86 +1,69 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+
 class CincoPP extends Component {
     constructor(props) {
         super(props);
         this.state = {
             populares: [],
-            favorito: false,
-            mostrarDescripcion: false
+            favoritos: [],
+            mostrarDescripcion: null // almacena el ID de la peli que se muestra
         };
     }
 
     componentDidMount() {
-        const API_KEY = '9f66dc201448c71cc91c3c8c9f488105';
+        const favoritos = localStorage.getItem('Fav');
+        if (favoritos) {
+            this.setState({ favoritos: JSON.parse(favoritos) });
+        }
 
+        const API_KEY = '9f66dc201448c71cc91c3c8c9f488105';
         fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
             .then(res => res.json())
             .then(data => {
-                let cincoPopulares = [];
-                for (let i = 0; i < 5; i++) {
-                    cincoPopulares.push(data.results[i]);
-                }
+                const cincoPopulares = data.results.slice(0, 5);
                 this.setState({ populares: cincoPopulares });
             })
             .catch(err => console.log(err));
     }
-    mostrarOcultarDescripcion() {
-        if (this.state.mostrarDescripcion === true) {
-            this.setState({
-                mostrarDescripcion: false
-            });
-        } else {
-            this.setState({
-                mostrarDescripcion: true
-            });
-        }
+
+    mostrarOcultarDescripcion(id) {
+        this.setState(prevState => ({
+            mostrarDescripcion: prevState.mostrarDescripcion === id ? null : id
+        }));
     }
+
     agregarAlFav(id) {
         let storage = localStorage.getItem('Fav');
-        if (storage !== null) {
-            let arrParseado = JSON.parse(storage);
-            if (!arrParseado.includes(id)) {
-                arrParseado.push(id);
-                let arrStringificado = JSON.stringify(arrParseado);
-                localStorage.setItem('Fav', arrStringificado);
-            }
-        } else {
-            let primerID = [id];
-            let arrStringificado = JSON.stringify(primerID);
-            localStorage.setItem('Fav', arrStringificado);
+        let arr = storage ? JSON.parse(storage) : [];
+
+        if (!arr.includes(id)) {
+            arr.push(id);
+            localStorage.setItem('Fav', JSON.stringify(arr));
         }
 
-        this.setState({
-            favorito: true,
-        });
+        this.setState({ favoritos: arr });
     }
 
     sacarDelFav(id) {
-        const storage = localStorage.getItem('Fav');
-        const storageParseado = JSON.parse(storage);
-        const filtrarStorage = storageParseado.filter((elm) => elm !== id);
-        const storageStringificado = JSON.stringify(filtrarStorage);
-        localStorage.setItem('Fav', storageStringificado);
+        let storage = localStorage.getItem('Fav');
+        let arr = storage ? JSON.parse(storage) : [];
 
-        this.setState({
-            favorito: false,
-        });
+        let nuevoArr = arr.filter(elm => elm !== id);
+        localStorage.setItem('Fav', JSON.stringify(nuevoArr));
+
+        this.setState({ favoritos: nuevoArr });
     }
-    goToPopulares = () => {
-        this.props.history.push(`/PeliculasPopulares`);
-    };
 
     render() {
-        const { populares, favorito, dataPelicula } = this.state;
+        const { populares, favoritos, mostrarDescripcion } = this.state;
 
         return (
             <div>
-                     <Link to={`/PeliculasPopulares`}>
-                
-                                    <h2>Peliculas Populares</h2>
-                    
-                
-                                </Link>
+                <Link to={`/PeliculasPopulares`}>
+                    <h2>Películas Populares</h2>
+                </Link>
+
                 {populares.length === 0 ? (
                     <p>Cargando...</p>
                 ) : (
@@ -88,44 +71,35 @@ class CincoPP extends Component {
                         {populares.map((peli, i) => (
                             <li key={i}>
                                 <Link to={`/DetalleContenido/${peli.id}`}>
-
                                     <h3>{peli.title}</h3>
                                     <img
                                         src={`https://image.tmdb.org/t/p/w200${peli.poster_path}`}
                                         alt={peli.title}
                                     />
                                 </Link>
-                                <button onClick={() => this.mostrarOcultarDescripcion()}>
-                                    {
-                                        this.state.mostrarDescripcion === true
-                                            ? 'Ocultar descripción' : 'Ver descripción'
-                                    }
+
+                                <button onClick={() => this.mostrarOcultarDescripcion(peli.id)}>
+                                    {mostrarDescripcion === peli.id
+                                        ? 'Ocultar descripción'
+                                        : 'Ver descripción'}
                                 </button>
 
-                                {
-                                    this.state.mostrarDescripcion === true
-                                        ? (
-                                            <>
-                                                <h4>Description:</h4>
-                                                <p>{this.props.data.overview}</p>
-                                            </>
-                                        )
-                                        : null
-                                }
-
-                                {favorito ? (
-                                    <button onClick={() => this.sacarDelFav(dataPelicula.id)}>Sacar del Fav</button>
-                                ) : (
-                                    <button onClick={() => this.agregarAlFav(dataPelicula.id)}>Fav</button>
+                                {mostrarDescripcion === peli.id && (
+                                    <>
+                                        <h4>Descripción:</h4>
+                                        <p>{peli.overview}</p>
+                                    </>
                                 )}
 
-
-
+                                {favoritos.includes(peli.id) ? (
+                                    <button onClick={() => this.sacarDelFav(peli.id)}>Sacar del Fav</button>
+                                ) : (
+                                    <button onClick={() => this.agregarAlFav(peli.id)}>Fav</button>
+                                )}
                             </li>
                         ))}
                     </ul>
                 )}
-
             </div>
         );
     }
