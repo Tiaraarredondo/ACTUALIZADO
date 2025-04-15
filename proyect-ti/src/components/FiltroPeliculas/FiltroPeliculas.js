@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class FiltroPeliculasPopulares extends Component {
+export default class FiltroPeliculas extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,4 +31,3 @@ class FiltroPeliculasPopulares extends Component {
   }
 }
 
-export default FiltroPeliculasPopulares;

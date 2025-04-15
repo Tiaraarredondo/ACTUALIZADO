@@ -8,7 +8,7 @@ class DetalleContenido extends Component {
     super(props);
     this.state = {
       pelicula: {},
-      favorito: false
+      favorito: false,
     };
   }
 
@@ -19,6 +19,7 @@ class DetalleContenido extends Component {
       .then(res => res.json())
       .then(data => {
         this.setState({ pelicula: data });
+
 
         let favoritos = localStorage.getItem('Fav');
         if (favoritos !== null) {
@@ -57,7 +58,7 @@ class DetalleContenido extends Component {
   }
 
   render() {
-    const { pelicula, favorito } = this.state;
+    const { pelicula, favorito,} = this.state;
 
     return (
       
@@ -76,8 +77,9 @@ class DetalleContenido extends Component {
 
         <p><strong>Sinopsis:</strong> {pelicula.overview}</p>
         <p><strong>Duración:</strong> {pelicula.runtime} min</p>
+        <p><strong>Rating:</strong> {pelicula.vote_average} ⭐</p>
+        <p><strong>Release Date:</strong> {pelicula.release_date}</p>
         
-        <p><strong>Genre:</strong> {pelicula.genre_ids}</p>
 
         {favorito ? (
           <button onClick={() => this.sacarDeFavoritos(pelicula.id)}>Sacar de Favoritos</button>
